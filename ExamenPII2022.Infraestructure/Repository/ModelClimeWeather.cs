@@ -64,18 +64,26 @@ namespace ExamenPII2022.Infraestructure.Repository
 
         public List<ClimeWeather.Root> GetAll()
         {
-            var data = RAFContext.GetAll<ClimeJson>();
-            List<ClimeWeather.Root> weatherList = new List<ClimeWeather.Root>(); 
-
-            foreach (var item in data)
+            try
             {
-                var temp = item.JsonAPI.Length;
-                ClimeWeather.Root jsonObject = JsonConvert.DeserializeObject<ClimeWeather.Root>(item.JsonAPI);
-                jsonObject.Id = item.Id;
-                weatherList.Add(jsonObject);    
-            }
+                var data = RAFContext.GetAll<ClimeJson>();
+                List<ClimeWeather.Root> weatherList = new List<ClimeWeather.Root>();
 
-            return weatherList;
+                foreach (var item in data)
+                {
+                    var temp = item.JsonAPI.Length;
+                    ClimeWeather.Root jsonObject = JsonConvert.DeserializeObject<ClimeWeather.Root>(item.JsonAPI);
+                    jsonObject.Id = item.Id;
+                    weatherList.Add(jsonObject);
+                }
+
+                return weatherList;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public bool Update(ClimeWeather.Root item, int i)

@@ -24,24 +24,38 @@ namespace ExamenPII2022.Forms
 
         private void FrmHistory_Load(object sender, EventArgs e)
         {
-            List<DaoHistory> list = new List<DaoHistory>();
-
-            Random random = new Random();
-            foreach (var item in ClimeServices.GetAll())
+            try
             {
-                list.Add(new DaoHistory()
+                List<DaoHistory> list = new List<DaoHistory>();
+
+                if (ClimeServices.GetAll().Count > 0)
                 {
-                    Id = item.Id,
-                    Lat = item.lat,
-                    Long = item.lon,
-                    Time_zone = item.timezone,
-                    Timezoneoff = item.timezone_offset,
+                    foreach (var item in ClimeServices.GetAll())
+                    {
+                        list.Add(new DaoHistory()
+                        {
+                            Id = item.Id,
+                            Lat = item.lat,
+                            Long = item.lon,
+                            Time_zone = item.timezone,
+                            Timezoneoff = item.timezone_offset,
 
-                });
+                        });
 
+                    }
+
+                    dtgvData.DataSource = list;
+                }
+                else
+                {
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Mensaje de error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            dtgvData.DataSource = list;
         }
     }
 }

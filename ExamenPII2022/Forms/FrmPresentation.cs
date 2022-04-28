@@ -38,68 +38,86 @@ namespace ExamenPII2022.Forms
 
         public void Spline(int id)
         {
-            if (climeServices.GetAll().Count > 0)
+            try
             {
-                var p = climeServices.GetAll()[id - 1].hourly;
-                List<double> temperaturas = new List<double>();
-                List<string> hours = new List<string>();
-
-                foreach (var item in p)
+                if (climeServices.GetAll().Count > 0)
                 {
-                    temperaturas.Add(item.temp);
-                }
+                    var p = climeServices.GetAll()[id - 1].hourly;
+                    List<double> temperaturas = new List<double>();
+                    List<string> hours = new List<string>();
 
-                foreach (var item in p)
+                    foreach (var item in p)
+                    {
+                        temperaturas.Add(item.temp);
+                    }
+
+                    foreach (var item in p)
+                    {
+                        hours.Add(UnixTimeStampToDateTime(item.dt).ToShortTimeString());
+                    }
+
+                    ChartStadistics.YAxes.GridLines.Display = false;
+
+                    //Create a new dataset 
+                    var dataset = new Guna.Charts.WinForms.GunaSplineDataset();
+                    dataset.PointRadius = 3;
+                    dataset.PointStyle = PointStyle.Circle;
+                    var r = new Random();
+
+                    for (int i = 0; i < hours.Count; i++)
+                    {
+                        temperaturas[i] -= 273;
+                        dataset.DataPoints.Add(hours[i], (temperaturas[i]));
+                    }
+
+
+                    //Add a new dataset to a chart.Datasets
+                    ChartStadistics.Datasets.Add(dataset);
+
+                    //An update was made to re-render the chart
+                    ChartStadistics.Update();
+                }
+                else
                 {
-                    hours.Add(UnixTimeStampToDateTime(item.dt).ToShortTimeString());
+                    return;
                 }
-
-                ChartStadistics.YAxes.GridLines.Display = false;
-
-                //Create a new dataset 
-                var dataset = new Guna.Charts.WinForms.GunaSplineDataset();
-                dataset.PointRadius = 3;
-                dataset.PointStyle = PointStyle.Circle;
-                var r = new Random();
-
-                for (int i = 0; i < hours.Count; i++)
-                {
-                    temperaturas[i] -= 273;
-                    dataset.DataPoints.Add(hours[i], (temperaturas[i]));
-                }
-
-
-                //Add a new dataset to a chart.Datasets
-                ChartStadistics.Datasets.Add(dataset);
-
-                //An update was made to re-render the chart
-                ChartStadistics.Update();
             }
-            else
+            catch (Exception ex)
             {
-                return;
+                MessageBox.Show(ex.Message, "Mensaje de error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
-           
+
+
         }
 
         public void CharTxtById(int Id)
         {
-            if (climeServices.GetAll().Count > 0)
+            try
             {
-                var dat = climeServices.GetAll()[Id - 1].hourly[0];
+                if (climeServices.GetAll().Count > 0)
+                {
+                    var dat = climeServices.GetAll()[Id - 1].hourly[0];
 
-                txtTemp.Text = (dat.temp - 273.12).ToString() + " C";
-                txtViento.Text = dat.wind_speed.ToString() + "KM/H";
-                txtPrecipitación.Text = dat.pressure.ToString();
-                txtHumidity.Text = dat.humidity.ToString();
+                    txtTemp.Text = (dat.temp - 273.12).ToString() + " C";
+                    txtViento.Text = dat.wind_speed.ToString() + "KM/H";
+                    txtPrecipitación.Text = dat.pressure.ToString();
+                    txtHumidity.Text = dat.humidity.ToString();
+                    txtLat.Text = dat.weather[0].description;
+                    txtLong.Text = UnixTimeStampToDateTime(climeServices.GetAll()[Id - 1].current.sunrise).ToShortTimeString();
+                    txtTimeZone.Text = climeServices.GetAll()[Id - 1].timezone;
+                    label5.Text = UnixTimeStampToDateTime(climeServices.GetAll()[Id - 1].current.sunset).ToShortTimeString();
+                    pictureIcon.ImageLocation = $"https://openweathermap.org/img/w/{dat.weather[0].icon}{".png"}";
+                }
+                else
+                {
+                    return;
+                }
 
             }
-            else
+            catch (Exception ex)
             {
-                return;
+                MessageBox.Show(ex.Message, "Mensaje de error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
         private void btnGo_Click(object sender, EventArgs e)
         {
@@ -107,6 +125,10 @@ namespace ExamenPII2022.Forms
 
             try
             {
+                if (txtSearch.Text == String.Empty)
+                {
+                    throw new Exception("Por favor ingresa una ciudad");
+                }
                 climeServices.Add(txtSearch.Text, Math.Floor(dt));
                 ChargebyIdPro(climeServices.GetAll()[climeServices.GetAll().Count - 1].Id);
 
@@ -120,9 +142,11 @@ namespace ExamenPII2022.Forms
         public DateTime UnixTimeStampToDateTime(double unixTimeStamp)
         {
             // Unix timestamp is seconds past epoch
+
             System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
             dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
             return dtDateTime;
+
         }
         private double ToUnixTime(DateTime input)
         {
@@ -135,74 +159,95 @@ namespace ExamenPII2022.Forms
             frmHistory.ShowDialog();
         }
 
-        private void DataGridWeather_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int Selected = 0;
-            if (e.RowIndex >= 0)
-            {
-               
-                Selected = int.Parse(DataGridWeather.Rows[e.RowIndex].Cells[0].Value.ToString());
-                CharTxtById(Selected);
-                Spline(Selected);
-            }
-        }
-
-        private void DataGridWeather_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int id = 0;
-            if ((int)DataGridWeather.Rows.Count > 0)
-                id = (int)DataGridWeather.Rows[DataGridWeather.CurrentRow.Index].Cells[0].Value;
-            ChargebyIdPro(id);
-        }
-
         private void DaoHourlyGet(int id)
         {
             List<DaoHourly> daoHourlies = new List<DaoHourly>();
 
-            if (climeServices.GetAll().Count > 0)
+            try
             {
-                foreach (var item in climeServices.GetAll()[id - 1].hourly)
+                if (climeServices.GetAll().Count > 0)
                 {
-                    daoHourlies.Add(new DaoHourly()
+                    foreach (var item in climeServices.GetAll()[id - 1].hourly)
                     {
-                        Hora = UnixTimeStampToDateTime(item.dt).ToShortTimeString(),
-                        Temperatura = item.temp - 273.12,
-                        Presión = item.pressure,
-                        Nubes = item.clouds,
-                        Visibilidad = item.visibility,
-                        Velocidad_viento = item.wind_speed,
-                    });
-                }
+                        daoHourlies.Add(new DaoHourly()
+                        {
+                            Hora = UnixTimeStampToDateTime(item.dt).ToShortTimeString(),
+                            Temperatura = item.temp - 273.12,
+                            Presión = item.pressure,
+                            Nubes = item.clouds,
+                            Visibilidad = item.visibility,
+                            Velocidad_viento = item.wind_speed,
+                        });
+                    }
 
-                dtgvData.DataSource = daoHourlies;
+                    dtgvData.DataSource = daoHourlies;
+                }
+                else
+                {
+                    return;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return;
+                MessageBox.Show(ex.Message, "Mensaje de error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void DaoCountry(int id)
         {
-            List<DaoName> list = new List<DaoName>();
-            foreach (var item in climeServices.GetAll())
+            try
             {
-                list.Add(new DaoName()
+                List<DaoName> list = new List<DaoName>();
+                foreach (var item in climeServices.GetAll())
                 {
-                    Id = item.Id,
-                    Time_zone = item.timezone,
-                });
+                    list.Add(new DaoName()
+                    {
+                        Id = item.Id,
+                        Time_zone = item.timezone,
+                    });
+                }
+                DataGridWeather.DataSource = list;
             }
-            DataGridWeather.DataSource = list;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Mensaje de error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ChargebyIdPro(int id)
         {
-            CharTxtById(id);
-            Spline(id);
-            DaoHourlyGet(id);
-            DaoCountry(id);
+            try
+            {
+                CharTxtById(id);
+                Spline(id);
+                DaoHourlyGet(id);
+                DaoCountry(id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Mensaje de error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void guna2PictureBox1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void DataGridWeather_CellContentDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int id = 0;
+                if ((int)DataGridWeather.Rows.Count > 0)
+                    id = (int)DataGridWeather.Rows[DataGridWeather.CurrentRow.Index].Cells[0].Value;
+                ChargebyIdPro(id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Mensaje de error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
