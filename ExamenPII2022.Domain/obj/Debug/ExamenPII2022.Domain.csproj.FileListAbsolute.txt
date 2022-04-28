@@ -4,3 +4,9 @@ C:\Users\Paulo Mayorga\Source\Repos\ExamenPropII\ExamenPII2022.Domain\obj\Debug\
 C:\Users\Paulo Mayorga\Source\Repos\ExamenPropII\ExamenPII2022.Domain\obj\Debug\ExamenPII2022.Domain.csproj.CoreCompileInputs.cache
 C:\Users\Paulo Mayorga\Source\Repos\ExamenPropII\ExamenPII2022.Domain\obj\Debug\ExamenPII2022.Domain.dll
 C:\Users\Paulo Mayorga\Source\Repos\ExamenPropII\ExamenPII2022.Domain\obj\Debug\ExamenPII2022.Domain.pdb
+C:\Users\Paulo Mayorga\OneDrive\Escritorio\Data\ExamenPropII\ExamenPII2022.Domain\bin\Debug\ExamenPII2022.Domain.dll
+C:\Users\Paulo Mayorga\OneDrive\Escritorio\Data\ExamenPropII\ExamenPII2022.Domain\bin\Debug\ExamenPII2022.Domain.pdb
+C:\Users\Paulo Mayorga\OneDrive\Escritorio\Data\ExamenPropII\ExamenPII2022.Domain\obj\Debug\ExamenPII2022.Domain.csproj.AssemblyReference.cache
+C:\Users\Paulo Mayorga\OneDrive\Escritorio\Data\ExamenPropII\ExamenPII2022.Domain\obj\Debug\ExamenPII2022.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Paulo Mayorga\OneDrive\Escritorio\Data\ExamenPropII\ExamenPII2022.Domain\obj\Debug\ExamenPII2022.Domain.dll
+C:\Users\Paulo Mayorga\OneDrive\Escritorio\Data\ExamenPropII\ExamenPII2022.Domain\obj\Debug\ExamenPII2022.Domain.pdb

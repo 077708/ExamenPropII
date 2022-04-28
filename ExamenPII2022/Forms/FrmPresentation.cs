@@ -38,49 +38,68 @@ namespace ExamenPII2022.Forms
 
         public void Spline(int id)
         {
-            var p = climeServices.GetAll()[id - 1].hourly;
-            List<double> temperaturas = new List<double>();
-            List<string> hours = new List<string>();
-
-            foreach (var item in p)
+            if (climeServices.GetAll().Count > 0)
             {
-                temperaturas.Add(item.temp);
-            }
+                var p = climeServices.GetAll()[id - 1].hourly;
+                List<double> temperaturas = new List<double>();
+                List<string> hours = new List<string>();
 
-            foreach (var item in p)
+                foreach (var item in p)
+                {
+                    temperaturas.Add(item.temp);
+                }
+
+                foreach (var item in p)
+                {
+                    hours.Add(UnixTimeStampToDateTime(item.dt).ToShortTimeString());
+                }
+
+                ChartStadistics.YAxes.GridLines.Display = false;
+
+                //Create a new dataset 
+                var dataset = new Guna.Charts.WinForms.GunaSplineDataset();
+                dataset.PointRadius = 3;
+                dataset.PointStyle = PointStyle.Circle;
+                var r = new Random();
+
+                for (int i = 0; i < hours.Count; i++)
+                {
+                    temperaturas[i] -= 273;
+                    dataset.DataPoints.Add(hours[i], (temperaturas[i]));
+                }
+
+
+                //Add a new dataset to a chart.Datasets
+                ChartStadistics.Datasets.Add(dataset);
+
+                //An update was made to re-render the chart
+                ChartStadistics.Update();
+            }
+            else
             {
-                hours.Add(UnixTimeStampToDateTime(item.dt).ToShortTimeString());
+                return;
             }
-
-            ChartStadistics.YAxes.GridLines.Display = false;
-
-            //Create a new dataset 
-            var dataset = new Guna.Charts.WinForms.GunaSplineDataset();
-            dataset.PointRadius = 3;
-            dataset.PointStyle = PointStyle.Circle;
-            var r = new Random();
-
-            for (int i = 0; i < hours.Count; i++)
-            {
-                temperaturas[i] -= 273;
-                dataset.DataPoints.Add(hours[i], (temperaturas[i]));
-            }
-
-
-            //Add a new dataset to a chart.Datasets
-            ChartStadistics.Datasets.Add(dataset);
-
-            //An update was made to re-render the chart
-            ChartStadistics.Update();
+            
+           
         }
 
         public void CharTxtById(int Id)
         {
-            var dat = climeServices.GetAll()[Id - 1].hourly[0];
-            txtTemp.Text = (dat.temp - 273.12).ToString() + " C";
-            txtViento.Text = dat.wind_speed.ToString() + "KM/H";
-            txtPrecipitación.Text = dat.pressure.ToString();
-            txtHumidity.Text = dat.humidity.ToString();
+            if (climeServices.GetAll().Count > 0)
+            {
+                var dat = climeServices.GetAll()[Id - 1].hourly[0];
+
+                txtTemp.Text = (dat.temp - 273.12).ToString() + " C";
+                txtViento.Text = dat.wind_speed.ToString() + "KM/H";
+                txtPrecipitación.Text = dat.pressure.ToString();
+                txtHumidity.Text = dat.humidity.ToString();
+
+            }
+            else
+            {
+                return;
+            }
+
         }
         private void btnGo_Click(object sender, EventArgs e)
         {
@@ -140,20 +159,28 @@ namespace ExamenPII2022.Forms
         {
             List<DaoHourly> daoHourlies = new List<DaoHourly>();
 
-            foreach (var item in climeServices.GetAll()[id - 1].hourly)
+            if (climeServices.GetAll().Count > 0)
             {
-                daoHourlies.Add(new DaoHourly()
+                foreach (var item in climeServices.GetAll()[id - 1].hourly)
                 {
-                    Hora = UnixTimeStampToDateTime(item.dt).ToShortTimeString(),
-                    Temperatura = item.temp - 273.12,
-                    Presión = item.pressure,
-                    Nubes = item.clouds,
-                    Visibilidad = item.visibility,
-                    Velocidad_viento = item.wind_speed,
-                });
-            }
+                    daoHourlies.Add(new DaoHourly()
+                    {
+                        Hora = UnixTimeStampToDateTime(item.dt).ToShortTimeString(),
+                        Temperatura = item.temp - 273.12,
+                        Presión = item.pressure,
+                        Nubes = item.clouds,
+                        Visibilidad = item.visibility,
+                        Velocidad_viento = item.wind_speed,
+                    });
+                }
 
-            dtgvData.DataSource = daoHourlies;
+                dtgvData.DataSource = daoHourlies;
+            }
+            else
+            {
+                return;
+            }
+            
         }
 
         private void DaoCountry(int id)

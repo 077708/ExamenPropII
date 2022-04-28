@@ -7,3 +7,12 @@ C:\Users\Paulo Mayorga\source\repos\ExamenPropII\ExamenPropII.AppCORE\obj\Debug\
 C:\Users\Paulo Mayorga\source\repos\ExamenPropII\ExamenPropII.AppCORE\obj\Debug\ExamenPropII.AppCORE.csproj.CopyComplete
 C:\Users\Paulo Mayorga\source\repos\ExamenPropII\ExamenPropII.AppCORE\obj\Debug\ExamenPropII.AppCORE.dll
 C:\Users\Paulo Mayorga\source\repos\ExamenPropII\ExamenPropII.AppCORE\obj\Debug\ExamenPropII.AppCORE.pdb
+C:\Users\Paulo Mayorga\OneDrive\Escritorio\Data\ExamenPropII\ExamenPropII.AppCORE\bin\Debug\ExamenPropII.AppCORE.dll
+C:\Users\Paulo Mayorga\OneDrive\Escritorio\Data\ExamenPropII\ExamenPropII.AppCORE\bin\Debug\ExamenPropII.AppCORE.pdb
+C:\Users\Paulo Mayorga\OneDrive\Escritorio\Data\ExamenPropII\ExamenPropII.AppCORE\bin\Debug\ExamenPII2022.Domain.dll
+C:\Users\Paulo Mayorga\OneDrive\Escritorio\Data\ExamenPropII\ExamenPropII.AppCORE\bin\Debug\ExamenPII2022.Domain.pdb
+C:\Users\Paulo Mayorga\OneDrive\Escritorio\Data\ExamenPropII\ExamenPropII.AppCORE\obj\Debug\ExamenPropII.AppCORE.csproj.AssemblyReference.cache
+C:\Users\Paulo Mayorga\OneDrive\Escritorio\Data\ExamenPropII\ExamenPropII.AppCORE\obj\Debug\ExamenPropII.AppCORE.csproj.CoreCompileInputs.cache
+C:\Users\Paulo Mayorga\OneDrive\Escritorio\Data\ExamenPropII\ExamenPropII.AppCORE\obj\Debug\ExamenPropII.AppCORE.csproj.CopyComplete
+C:\Users\Paulo Mayorga\OneDrive\Escritorio\Data\ExamenPropII\ExamenPropII.AppCORE\obj\Debug\ExamenPropII.AppCORE.dll
+C:\Users\Paulo Mayorga\OneDrive\Escritorio\Data\ExamenPropII\ExamenPropII.AppCORE\obj\Debug\ExamenPropII.AppCORE.pdb
