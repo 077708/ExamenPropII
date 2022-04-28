@@ -8,7 +8,7 @@ namespace ExamenPII2022.Domain.Interfaces
 {
     public interface IColeccion <T>
     {
-        void Add(string item);
+        void Add(string item, double dt);
         bool Update(T item, int i);
         bool Delete(int item);
         List<T> GetAll();

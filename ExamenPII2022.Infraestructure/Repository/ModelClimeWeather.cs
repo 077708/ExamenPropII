@@ -21,7 +21,7 @@ namespace ExamenPII2022.Infraestructure.Repository
             RAFContext = new RAFContext(30000, "ClimeAPI");
         }
 
-        public void Add(string txt)
+        public void Add(string txt, double dt)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace ExamenPII2022.Infraestructure.Repository
 
                     Root data = JsonConvert.DeserializeObject<Root>(json);
 
-                    string url = $"{AppSettings.ApiUrlHistory}lat={data.coord.lat}&lon={data.coord.lon}&dt={1651087925}&appid={AppSettings.Token}";
+                    string url = $"{AppSettings.ApiUrlHistory}lat={data.coord.lat}&lon={data.coord.lon}&dt={dt}&appid={AppSettings.Token}";
 
                     var jsonHistory = web.DownloadString(url);
 
@@ -71,6 +71,7 @@ namespace ExamenPII2022.Infraestructure.Repository
             {
                 var temp = item.JsonAPI.Length;
                 ClimeWeather.Root jsonObject = JsonConvert.DeserializeObject<ClimeWeather.Root>(item.JsonAPI);
+                jsonObject.Id = item.Id;
                 weatherList.Add(jsonObject);    
             }
 

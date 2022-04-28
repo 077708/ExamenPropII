@@ -8,7 +8,7 @@ namespace ExamenPropII.AppCORE.IContracts
 {
     public interface IServices <T>
     {
-        void Add(string item);
+        void Add(string item, double dt);
         bool Update(T item, int i);
         bool Delete(int item);
         List<T> GetAll();

@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DaoClime\DaoHistory.cs" />
+    <Compile Include="DaoClime\DaoHourly.cs" />
+    <Compile Include="DaoClime\DaoName.cs" />
     <Compile Include="Entities\ClimeCity.cs" />
     <Compile Include="Entities\ClimeJson.cs" />
     <Compile Include="Entities\ClimeWeather.cs" />

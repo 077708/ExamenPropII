@@ -38,3 +38,5 @@ C:\Users\Paulo Mayorga\Source\repos\ExamenPropII\ExamenPII2022\bin\Debug\System.
 C:\Users\Paulo Mayorga\Source\repos\ExamenPropII\ExamenPII2022\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\Paulo Mayorga\Source\repos\ExamenPropII\ExamenPII2022\bin\Debug\ExamenPropII.Common.dll
 C:\Users\Paulo Mayorga\Source\repos\ExamenPropII\ExamenPII2022\bin\Debug\ExamenPropII.Common.pdb
+C:\Users\Paulo Mayorga\Source\repos\ExamenPropII\ExamenPII2022\bin\Debug\Guna.Charts.WinForms.dll
+C:\Users\Paulo Mayorga\Source\repos\ExamenPropII\ExamenPII2022\obj\Debug\ExamenPII2022.Forms.FrmHistory.resources

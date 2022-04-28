@@ -16,9 +16,9 @@ namespace ExamenPropII.AppCORE.Services
             this.coleccion = coleccion;
         }
 
-        public void Add(string item)
+        public void Add(string item, double dt)
         {
-            coleccion.Add(item);
+            coleccion.Add(item, dt);
         }
 
         public bool Delete(int item)

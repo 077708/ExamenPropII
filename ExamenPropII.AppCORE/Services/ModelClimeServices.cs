@@ -11,9 +11,10 @@ namespace ExamenPropII.AppCORE.Services
 {
     public class ModelClimeServices : Base<ClimeWeather.Root>, IClimeServices
     {
-        private IClimeModel coleccion;
+        private IClimeModel Coleccion;
         public ModelClimeServices(IClimeModel coleccion) : base(coleccion)
         {
+            this.Coleccion = coleccion;
         }
     }
 }

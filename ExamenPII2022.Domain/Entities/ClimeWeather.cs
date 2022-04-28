@@ -53,6 +53,7 @@ namespace ExamenPII2022.Domain.Entities
 
         public class Root
         {
+            public int Id { get; set; }
             public double lat { get; set; }
             public double lon { get; set; }
             public string timezone { get; set; }
