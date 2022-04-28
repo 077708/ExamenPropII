@@ -1,4 +1,10 @@
-﻿using System;
+﻿using Autofac;
+using ExamenPII2022.Domain.Interfaces;
+using ExamenPII2022.Forms;
+using ExamenPII2022.Infraestructure.Repository;
+using ExamenPropII.AppCORE.IContracts;
+using ExamenPropII.AppCORE.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,9 +20,16 @@ namespace ExamenPII2022
         [STAThread]
         static void Main()
         {
+            var builder = new ContainerBuilder();
+
+            builder.RegisterType<ModelClimeWeather>().As<IClimeModel>();
+            builder.RegisterType<ModelClimeServices>().As<IClimeServices>();
+
+            var container = builder.Build();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new FrmPresentation(container.Resolve<IClimeServices>()));
         }
     }
 }

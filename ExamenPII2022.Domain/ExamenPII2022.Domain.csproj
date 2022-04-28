@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ExamenPII2022.Domain</RootNamespace>
     <AssemblyName>ExamenPII2022.Domain</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,17 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\City.cs" />
+    <Compile Include="Entities\ClimeCity.cs" />
+    <Compile Include="Entities\ClimeJson.cs" />
     <Compile Include="Entities\ClimeWeather.cs" />
-    <Compile Include="Entities\clouds.cs" />
-    <Compile Include="Entities\Coord.cs" />
-    <Compile Include="Entities\Country.cs" />
-    <Compile Include="Entities\DataWeather.cs" />
-    <Compile Include="Entities\HMain.cs" />
-    <Compile Include="Entities\Main.cs" />
-    <Compile Include="Entities\Sys.cs" />
-    <Compile Include="Entities\Weather.cs" />
-    <Compile Include="Entities\Wind.cs" />
+    <Compile Include="Interfaces\IClimeModel.cs" />
     <Compile Include="Interfaces\IColeccion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,0 +1,6 @@
+C:\Users\Paulo Mayorga\source\repos\ExamenPropII\ExamenPropII.Common\bin\Debug\ExamenPropII.Common.dll
+C:\Users\Paulo Mayorga\source\repos\ExamenPropII\ExamenPropII.Common\bin\Debug\ExamenPropII.Common.pdb
+C:\Users\Paulo Mayorga\source\repos\ExamenPropII\ExamenPropII.Common\obj\Debug\ExamenPropII.Common.csproj.AssemblyReference.cache
+C:\Users\Paulo Mayorga\source\repos\ExamenPropII\ExamenPropII.Common\obj\Debug\ExamenPropII.Common.csproj.CoreCompileInputs.cache
+C:\Users\Paulo Mayorga\source\repos\ExamenPropII\ExamenPropII.Common\obj\Debug\ExamenPropII.Common.dll
+C:\Users\Paulo Mayorga\source\repos\ExamenPropII\ExamenPropII.Common\obj\Debug\ExamenPropII.Common.pdb
